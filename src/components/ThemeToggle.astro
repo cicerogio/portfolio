@@ -1,0 +1,44 @@
+---
+---
+<button
+  id="theme-toggle"
+  aria-label="Alternar tema"
+  title="Alternar tema claro/escuro"
+  style="background: none; border: none; cursor: none; padding: 0; color: var(--muted-foreground); display: flex; align-items: center; transition: color 0.2s;"
+>
+  <!-- Sun (light mode) -->
+  <svg id="icon-sun" xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+    <circle cx="12" cy="12" r="4"/>
+    <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/>
+  </svg>
+  <!-- Moon (dark mode) -->
+  <svg id="icon-moon" xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/>
+  </svg>
+</button>
+
+<script is:inline>
+  function initThemeToggle() {
+    var btn = document.getElementById('theme-toggle');
+    var sun = document.getElementById('icon-sun');
+    var moon = document.getElementById('icon-moon');
+    if (!btn || !sun || !moon) return;
+
+    function apply(dark) {
+      document.documentElement.classList.toggle('dark', dark);
+      sun.style.display = dark ? 'block' : 'none';
+      moon.style.display = dark ? 'none' : 'block';
+      localStorage.setItem('theme', dark ? 'dark' : 'light');
+    }
+
+    var saved = localStorage.getItem('theme');
+    var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    apply(saved === 'dark' || (!saved && prefersDark));
+
+    btn.addEventListener('click', function() {
+      apply(!document.documentElement.classList.contains('dark'));
+    });
+  }
+
+  document.addEventListener('astro:page-load', initThemeToggle);
+</script>

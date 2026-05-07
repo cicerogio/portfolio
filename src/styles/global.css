@@ -1,0 +1,247 @@
+/* Fonts via Fontsource — all @imports must be first */
+@import "@fontsource/jetbrains-mono/400.css";
+@import "@fontsource/jetbrains-mono/500.css";
+@import "@fontsource/jetbrains-mono/700.css";
+@import "@fontsource/inter/400.css";
+@import "@fontsource/inter/500.css";
+@import "./tokens.css";
+@import "tailwindcss";
+
+/* Map tokens to Tailwind v4 color utilities */
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-border: var(--border);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --font-mono: var(--font-mono);
+  --font-sans: var(--font-sans);
+}
+
+/* ─── Reset ─────────────────────────────────────────── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-family: var(--font-mono);
+  background-color: var(--background);
+  color: var(--foreground);
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Hide native cursor only on devices that support hover (desktop) */
+@media (hover: hover) and (pointer: fine) {
+  html { cursor: none; }
+  a, button { cursor: none; }
+}
+
+body {
+  min-height: 100vh;
+  background-color: var(--background);
+}
+
+a { color: inherit; text-decoration: none; }
+img { display: block; max-width: 100%; }
+
+/* ─── Custom Cursor ──────────────────────────────────── */
+#cursor-dot {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: transparent;
+  border: 1.5px solid var(--foreground);
+  pointer-events: none;
+  z-index: 9999;
+  transition: width 0.15s cubic-bezier(0.16, 1, 0.3, 1),
+              height 0.15s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.15s ease,
+              background 0.15s ease,
+              opacity 0.2s ease;
+  will-change: transform;
+}
+
+#cursor-dot.expanded {
+  width: 36px;
+  height: 36px;
+  border-color: var(--accent);
+  background: color-mix(in srgb, var(--accent) 12%, transparent);
+}
+
+/* ─── Reveal Animations ──────────────────────────────── */
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+[data-reveal].is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ─── Grid Lines ─────────────────────────────────────── */
+.grid-lines {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image: linear-gradient(to right, var(--grid-line) 1px, transparent 1px);
+  background-size: 16.6667% 100%;
+  z-index: 0;
+}
+
+/* ─── Marquee ────────────────────────────────────────── */
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee 28s linear infinite;
+}
+
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+/* ─── Hover underline (links) ───────────────────────── */
+.underline-hover {
+  position: relative;
+  display: inline-block;
+}
+
+.underline-hover::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: var(--accent);
+  transition: width 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.underline-hover:hover::after { width: 100%; }
+
+/* ─── Prose (case body only) ─────────────────────────── */
+.prose {
+  font-family: var(--font-sans);
+  color: var(--foreground);
+  max-width: 68ch;
+}
+
+.prose h2 {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted-foreground);
+  margin-top: 4rem;
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.prose h2::before {
+  content: attr(data-num);
+  color: var(--accent);
+  font-size: 0.65rem;
+}
+
+.prose h3 {
+  font-family: var(--font-mono);
+  font-size: 1rem;
+  font-weight: 700;
+  margin-top: 2rem;
+  margin-bottom: 0.75rem;
+}
+
+.prose p {
+  font-size: 1.0625rem;
+  line-height: 1.8;
+  color: var(--muted-foreground);
+  margin-bottom: 1.25rem;
+}
+
+.prose strong {
+  color: var(--foreground);
+  font-weight: 600;
+}
+
+.prose ul, .prose ol {
+  padding-left: 1.5rem;
+  margin-bottom: 1.25rem;
+  color: var(--muted-foreground);
+  font-size: 1.0625rem;
+  line-height: 1.8;
+}
+
+.prose li { margin-bottom: 0.375rem; }
+
+.prose blockquote {
+  border-left: 2px solid var(--accent);
+  padding: 0.25rem 0 0.25rem 1.25rem;
+  margin: 2rem 0;
+  font-family: var(--font-mono);
+  font-size: 1.125rem;
+  color: var(--foreground);
+  font-style: normal;
+}
+
+.prose img {
+  width: 100%;
+  border: 1px solid var(--border);
+  margin: 2rem 0;
+}
+
+/* ─── Image placeholders ─────────────────────────────── */
+.img-placeholder {
+  background: var(--muted);
+  border: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--muted-foreground);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  position: relative;
+  overflow: hidden;
+}
+
+.img-placeholder::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(var(--border) 1px, transparent 1px),
+    linear-gradient(90deg, var(--border) 1px, transparent 1px);
+  background-size: 40px 40px;
+  opacity: 0.5;
+}
+
+.img-placeholder span { position: relative; z-index: 1; }
+
+/* ─── View Transitions defaults ──────────────────────── */
+@keyframes fade-in  { from { opacity: 0 } }
+@keyframes fade-out { to   { opacity: 0 } }
+@keyframes slide-from-right { from { transform: translateX(16px); opacity: 0 } }
+@keyframes slide-to-left    { to   { transform: translateX(-16px); opacity: 0 } }
+
+::view-transition-old(root) {
+  animation: 180ms ease fade-out, 180ms ease slide-to-left;
+}
+::view-transition-new(root) {
+  animation: 250ms ease fade-in, 250ms ease slide-from-right;
+}

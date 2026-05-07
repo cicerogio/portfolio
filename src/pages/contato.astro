@@ -1,0 +1,90 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import GridLines from '@/components/GridLines.astro';
+import { AUTHOR, SOCIAL } from '@/consts';
+---
+
+<BaseLayout
+  title="Contato — Giovany Jr"
+  description="Entre em contato com Giovany Jr, Lead Product Designer. Aberto a posições sênior/lead e projetos interessantes."
+>
+
+  <!-- ── HERO ──────────────────────────────────────────── -->
+  <section style="position: relative; overflow: hidden; padding: 5rem 2rem 6rem; max-width: 1200px; margin: 0 auto;">
+    <GridLines />
+    <div style="position: relative; z-index: 1; max-width: 700px;">
+      <p data-reveal="hero" style="font-family: var(--font-mono); font-size: 0.65rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted-foreground); margin-bottom: 1.5rem;">
+        CONTATO
+      </p>
+      <h1 data-reveal="hero" style="font-family: var(--font-mono); font-size: clamp(3.5rem, 9vw, 8rem); font-weight: 700; letter-spacing: -0.04em; line-height: 0.95; margin-bottom: 2rem; transition-delay: 120ms;">
+        Vamos conversar.
+      </h1>
+      <p data-reveal="hero" style="font-family: var(--font-mono); font-size: 0.95rem; color: var(--muted-foreground); line-height: 1.8; max-width: 50ch; margin-bottom: 1rem; transition-delay: 240ms;">
+        Estou em busca de posições sênior ou lead em product design — preferencialmente remote-first, com complexidade real de produto.
+      </p>
+      <p data-reveal="hero" style="font-family: var(--font-mono); font-size: 0.95rem; color: var(--muted-foreground); line-height: 1.8; max-width: 50ch; transition-delay: 320ms;">
+        Se você tem um produto que precisa de um designer que entrega e pensa em sistemas — adoraria saber mais.
+      </p>
+    </div>
+  </section>
+
+  <!-- ── CANAIS ─────────────────────────────────────────── -->
+  <section style="max-width: 1200px; margin: 0 auto; padding: 0 2rem 8rem;">
+    <div style="border-top: 1px solid var(--border);">
+
+      <a
+        href={SOCIAL.email}
+        data-reveal="scroll"
+        style="display: flex; align-items: center; justify-content: space-between; padding: 1.75rem 0; border-bottom: 1px solid var(--border); text-decoration: none; gap: 1rem; transition: color 0.2s;"
+        class="contact-link"
+      >
+        <div>
+          <p style="font-family: var(--font-mono); font-size: 0.6rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted-foreground); margin-bottom: 0.375rem;">EMAIL</p>
+          <p style="font-family: var(--font-mono); font-size: 1rem; font-weight: 700; color: var(--foreground);">{AUTHOR.email}</p>
+        </div>
+        <span style="font-family: var(--font-mono); font-size: 1.25rem; color: var(--muted-foreground); transition: color 0.2s, transform 0.2s;" class="contact-arrow">→</span>
+      </a>
+
+      <a
+        href={SOCIAL.linkedin}
+        target="_blank"
+        rel="noopener noreferrer"
+        data-reveal="scroll"
+        style="display: flex; align-items: center; justify-content: space-between; padding: 1.75rem 0; border-bottom: 1px solid var(--border); text-decoration: none; gap: 1rem; transition: color 0.2s; transition-delay: 80ms;"
+        class="contact-link"
+      >
+        <div>
+          <p style="font-family: var(--font-mono); font-size: 0.6rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted-foreground); margin-bottom: 0.375rem;">LINKEDIN</p>
+          <p style="font-family: var(--font-mono); font-size: 1rem; font-weight: 700; color: var(--foreground);">/in/giovany-jr-617223aa</p>
+        </div>
+        <span style="font-family: var(--font-mono); font-size: 1.25rem; color: var(--muted-foreground); transition: color 0.2s, transform 0.2s;" class="contact-arrow">→</span>
+      </a>
+
+      <a
+        href={SOCIAL.github}
+        target="_blank"
+        rel="noopener noreferrer"
+        data-reveal="scroll"
+        style="display: flex; align-items: center; justify-content: space-between; padding: 1.75rem 0; border-bottom: 1px solid var(--border); text-decoration: none; gap: 1rem; transition: color 0.2s; transition-delay: 160ms;"
+        class="contact-link"
+      >
+        <div>
+          <p style="font-family: var(--font-mono); font-size: 0.6rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted-foreground); margin-bottom: 0.375rem;">GITHUB</p>
+          <p style="font-family: var(--font-mono); font-size: 1rem; font-weight: 700; color: var(--foreground);">@giovanyjr</p>
+        </div>
+        <span style="font-family: var(--font-mono); font-size: 1.25rem; color: var(--muted-foreground); transition: color 0.2s, transform 0.2s;" class="contact-arrow">→</span>
+      </a>
+
+    </div>
+  </section>
+
+</BaseLayout>
+
+<style>
+  .contact-link:hover { color: var(--accent); }
+  .contact-link:hover p { color: var(--accent); }
+  .contact-link:hover .contact-arrow {
+    color: var(--accent);
+    transform: translateX(4px);
+  }
+</style>

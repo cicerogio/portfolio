@@ -1,0 +1,129 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import { BASE } from '@/consts';
+
+interface Props {
+  title: string;
+  description: string;
+  cover: string;
+  tags: string[];
+  metric: string;
+  client: string;
+  role: string;
+  duration: string;
+  year: number;
+}
+
+const { title, description, cover, tags, metric, client, role, duration, year } = Astro.props;
+---
+
+<BaseLayout title={`${title} — Giovany Jr`} description={description} ogImage={cover}>
+  <div style="max-width: 900px; margin: 0 auto; padding: 0 2rem;">
+
+    <!-- Breadcrumb -->
+    <nav
+      aria-label="Breadcrumb"
+      data-reveal="hero"
+      style="padding: 2rem 0 1.5rem; font-family: var(--font-mono); font-size: 0.65rem; letter-spacing: 0.1em; color: var(--muted-foreground); display: flex; align-items: center; gap: 0.5rem; text-transform: uppercase;"
+    >
+      <a href={`${BASE}/`} style="color: var(--muted-foreground); text-decoration: none;" class="underline-hover">Home</a>
+      <span style="opacity: 0.4;">/</span>
+      <a href={`${BASE}/cases`} style="color: var(--muted-foreground); text-decoration: none;" class="underline-hover">Cases</a>
+      <span style="opacity: 0.4;">/</span>
+      <span style="color: var(--foreground);">{title}</span>
+    </nav>
+
+    <!-- Tags + year -->
+    <div data-reveal="hero" style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1.5rem; flex-wrap: wrap;">
+      {tags.map((tag) => (
+        <span style="font-family: var(--font-mono); font-size: 0.65rem; letter-spacing: 0.12em; color: var(--muted-foreground); text-transform: uppercase;">
+          {tag}
+        </span>
+      ))}
+      <span style="color: var(--border);">·</span>
+      <span style="font-family: var(--font-mono); font-size: 0.65rem; letter-spacing: 0.1em; color: var(--accent); font-weight: 700;">{year}</span>
+    </div>
+
+    <!-- Title -->
+    <h1
+      data-reveal="hero"
+      style="font-family: var(--font-mono); font-size: clamp(2.5rem, 7vw, 5.5rem); font-weight: 700; line-height: 1.0; letter-spacing: -0.03em; color: var(--foreground); margin-bottom: 1.5rem;"
+    >
+      {title}
+    </h1>
+
+    <!-- Description -->
+    <p
+      data-reveal="hero"
+      style="font-family: var(--font-mono); font-size: 1rem; color: var(--muted-foreground); line-height: 1.7; margin-bottom: 2.5rem; max-width: 56ch;"
+    >
+      {description}
+    </p>
+
+    <!-- Meta grid -->
+    <div
+      data-reveal="hero"
+      style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; border: 1px solid var(--border); margin-bottom: 3rem;"
+    >
+      {[
+        { label: 'CLIENTE', value: client },
+        { label: 'PAPEL', value: role },
+        { label: 'DURAÇÃO', value: duration },
+        { label: 'ANO', value: String(year) },
+      ].map(({ label, value }, i) => (
+        <div style={`padding: 1.25rem; border-right: ${i < 3 ? '1px solid var(--border)' : 'none'};`}>
+          <p style="font-family: var(--font-mono); font-size: 0.55rem; letter-spacing: 0.14em; color: var(--muted-foreground); text-transform: uppercase; margin-bottom: 0.375rem;">{label}</p>
+          <p style="font-family: var(--font-mono); font-size: 0.8rem; font-weight: 700; color: var(--foreground); line-height: 1.3;">{value}</p>
+        </div>
+      ))}
+    </div>
+
+    <!-- Hero image -->
+    <div
+      data-reveal="scroll"
+      class="img-placeholder"
+      style="width: 100%; aspect-ratio: 16/9; margin-bottom: 0.5rem;"
+    >
+      <img
+        src={cover}
+        alt={`${title} — hero image`}
+        style="width: 100%; height: 100%; object-fit: cover; position: absolute; inset: 0;"
+        onerror="this.style.display='none';"
+      />
+      <span>{title} — hero screenshot</span>
+    </div>
+    <p data-reveal="scroll" style="font-family: var(--font-mono); font-size: 0.6rem; color: var(--muted-foreground); letter-spacing: 0.06em; margin-bottom: 3rem; text-align: center;">
+      Fig. 01 — {title}
+    </p>
+
+    <!-- Metric highlight -->
+    <div
+      data-reveal="scroll"
+      style="border-left: 2px solid var(--accent); padding: 1rem 1.5rem; margin-bottom: 4rem; background: color-mix(in srgb, var(--accent) 4%, transparent);"
+    >
+      <p style="font-family: var(--font-mono); font-size: 0.6rem; letter-spacing: 0.14em; color: var(--accent); text-transform: uppercase; margin-bottom: 0.25rem; font-weight: 700;">Resultado principal</p>
+      <p style="font-family: var(--font-mono); font-size: 1.25rem; font-weight: 700; color: var(--foreground);">{metric}</p>
+    </div>
+
+    <!-- Markdown content -->
+    <article class="prose">
+      <slot />
+    </article>
+
+    <!-- CTA -->
+    <div
+      data-reveal="scroll"
+      style="margin-top: 6rem; padding-top: 4rem; border-top: 1px solid var(--border);"
+    >
+      <p style="font-family: var(--font-mono); font-size: 0.65rem; letter-spacing: 0.14em; color: var(--muted-foreground); text-transform: uppercase; margin-bottom: 0.75rem;">Próximo passo</p>
+      <h2 style="font-family: var(--font-mono); font-size: 2rem; font-weight: 700; color: var(--foreground); margin-bottom: 2rem; line-height: 1.1;">Vamos conversar.</h2>
+      <a
+        href={`${BASE}/contato`}
+        class="underline-hover"
+        style="font-family: var(--font-mono); font-size: 0.85rem; font-weight: 700; letter-spacing: 0.08em; color: var(--accent); text-decoration: none; text-transform: uppercase;"
+      >
+        Entrar em contato →
+      </a>
+    </div>
+  </div>
+</BaseLayout>

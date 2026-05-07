@@ -1,0 +1,163 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import GridLines from '@/components/GridLines.astro';
+import { AUTHOR, BASE } from '@/consts';
+
+const experience = [
+  {
+    company: 'CARDÁPIO WEB',
+    role: 'Lead Product Designer',
+    years: '2022 — ATUAL',
+    desc: 'Liderança de design em plataforma food-tech. Design system, produtos 0→1 e workflow com IA.',
+  },
+  {
+    company: 'GUPY',
+    role: 'Senior Product Designer',
+    years: '2020 — 2022',
+    desc: 'Redesign completo do ATS. Pesquisa como base. Entregue para mais de 3.000 clientes enterprise.',
+  },
+  {
+    company: 'SUPERLOGICA',
+    role: 'Product Designer',
+    years: '2018 — 2020',
+    desc: 'Redesign de módulos financeiros e de cobrança para uma base de mais de 200 mil usuários.',
+  },
+  {
+    company: 'CLIQX',
+    role: 'UX Designer',
+    years: '2017 — 2018',
+    desc: 'Interfaces mobile e web para clientes de varejo e serviços.',
+  },
+  {
+    company: 'AGENDA EDU',
+    role: 'Product Designer',
+    years: '2016 — 2017',
+    desc: 'Design de plataforma EdTech desde o early-stage até os primeiros 50 mil usuários.',
+  },
+  {
+    company: 'INTMED',
+    role: 'UI Designer',
+    years: '2015 — 2016',
+    desc: 'Interfaces para SaaS médico. Primeiro cargo em product design.',
+  },
+];
+
+const focusAreas = [
+  {
+    num: '01',
+    title: 'Product Design',
+    desc: 'Visão end-to-end de produto. Do entendimento do problema e discovery até a entrega e iteração.',
+  },
+  {
+    num: '02',
+    title: 'Design Systems',
+    desc: 'Arquiteturas token-first, governança de componentes, Storybook e alinhamento design/código.',
+  },
+  {
+    num: '03',
+    title: 'Workflow com IA',
+    desc: 'Claude, Cursor e prompts customizados no dia a dia — da síntese de pesquisa à prototipagem.',
+  },
+];
+
+const tools = ['FIGMA', 'STORYBOOK', 'CLAUDE CODE', 'CURSOR', 'NOTION', 'LINEAR', 'GITHUB', 'ASTRO', 'TAILWIND CSS'];
+---
+
+<BaseLayout
+  title="Sobre — Giovany Jr"
+  description="Lead product designer com 9 anos. Baseado em Fortaleza, Brasil. Aberto a posições sênior/lead, remote-first."
+>
+
+  <!-- ── HERO ──────────────────────────────────────────── -->
+  <section style="position: relative; overflow: hidden; padding: 5rem 2rem 6rem; max-width: 1200px; margin: 0 auto;">
+    <GridLines />
+    <div style="position: relative; z-index: 1;">
+      <p data-reveal="hero" style="font-family: var(--font-mono); font-size: 0.65rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted-foreground); margin-bottom: 1.5rem;">
+        SOBRE
+      </p>
+      <h1 data-reveal="hero" style="font-family: var(--font-mono); font-size: clamp(3rem, 8vw, 7rem); font-weight: 700; letter-spacing: -0.04em; line-height: 0.95; margin-bottom: 1.5rem; transition-delay: 120ms;">
+        Olá, sou Giovany.
+      </h1>
+      <p data-reveal="hero" style="font-family: var(--font-mono); font-size: 1rem; color: var(--muted-foreground); transition-delay: 240ms;">
+        Lead product designer baseado em Fortaleza, Brasil.
+      </p>
+    </div>
+  </section>
+
+  <!-- ── BIO ───────────────────────────────────────────── -->
+  <section style="max-width: 1200px; margin: 0 auto; padding: 0 2rem 5rem;">
+    <div style="max-width: 640px;">
+      {[
+        '9 anos desenhando produtos digitais na interseção entre método, pensamento sistêmico e IA. Comecei como designer de UI em SaaS médico e fui crescendo até liderar o design de plataformas em escala.',
+        'Meu foco hoje é no food-tech e no software operacional que faz restaurantes funcionarem. Me preocupo com interfaces que funcionam sob pressão — numa cozinha barulhenta, com as mãos ocupadas, com operadores que têm 30 segundos pra tomar uma decisão.',
+        'Nos últimos dois anos, integrei IA a todas as fases do meu trabalho. Não como atalho — como multiplicador. Claude para síntese de pesquisa e escrita, Cursor para prototipagem com código real, Claude Code para construir projetos como este portfólio.',
+        'Estou em busca de posições sênior ou lead em product design, preferencialmente remote-first, em produtos com complexidade operacional real.',
+      ].map((para, i) => (
+        <p
+          data-reveal="scroll"
+          style={`font-family: var(--font-mono); font-size: 0.95rem; line-height: 1.85; color: var(--muted-foreground); margin-bottom: 1.25rem; transition-delay: ${i * 80}ms;`}
+        >
+          {para}
+        </p>
+      ))}
+    </div>
+  </section>
+
+  <!-- ── EXPERIÊNCIA ────────────────────────────────────── -->
+  <section style="max-width: 1200px; margin: 0 auto; padding: 0 2rem 5rem; border-top: 1px solid var(--border);">
+    <div data-reveal="scroll" style="display: flex; align-items: baseline; gap: 1rem; padding: 3rem 0 2rem;">
+      <span style="font-family: var(--font-mono); font-size: 0.65rem; color: var(--accent); font-weight: 700; letter-spacing: 0.1em;">03</span>
+      <h2 style="font-family: var(--font-mono); font-size: 0.65rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted-foreground);">EXPERIÊNCIA</h2>
+    </div>
+
+    {experience.map((item, i) => (
+      <div
+        data-reveal="scroll"
+        style={`border-top: 1px solid var(--border); padding: 1.5rem 0; display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; align-items: baseline; transition-delay: ${i * 60}ms;`}
+      >
+        <div>
+          <p style="font-family: var(--font-mono); font-size: 0.75rem; font-weight: 700; letter-spacing: 0.06em; color: var(--foreground); margin-bottom: 0.25rem;">{item.company}</p>
+          <p style="font-family: var(--font-mono); font-size: 0.7rem; color: var(--accent); letter-spacing: 0.04em;">{item.role}</p>
+        </div>
+        <div>
+          <p style="font-family: var(--font-mono); font-size: 0.65rem; color: var(--muted-foreground); letter-spacing: 0.08em; margin-bottom: 0.375rem;">{item.years}</p>
+          <p style="font-family: var(--font-mono); font-size: 0.7rem; color: var(--muted-foreground); line-height: 1.6;">{item.desc}</p>
+        </div>
+      </div>
+    ))}
+    <div style="border-top: 1px solid var(--border);"></div>
+  </section>
+
+  <!-- ── ÁREAS DE FOCO ──────────────────────────────────── -->
+  <section style="max-width: 1200px; margin: 0 auto; padding: 0 2rem 5rem; border-top: 1px solid var(--border);">
+    <div data-reveal="scroll" style="display: flex; align-items: baseline; gap: 1rem; padding: 3rem 0 2rem;">
+      <span style="font-family: var(--font-mono); font-size: 0.65rem; color: var(--accent); font-weight: 700; letter-spacing: 0.1em;">04</span>
+      <h2 style="font-family: var(--font-mono); font-size: 0.65rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted-foreground);">ÁREAS DE FOCO</h2>
+    </div>
+
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 0; border: 1px solid var(--border);">
+      {focusAreas.map((area, i) => (
+        <div
+          data-reveal="scroll"
+          style={`padding: 2rem; ${i < focusAreas.length - 1 ? 'border-right: 1px solid var(--border);' : ''} transition-delay: ${i * 80}ms;`}
+        >
+          <p style="font-family: var(--font-mono); font-size: 0.6rem; color: var(--accent); font-weight: 700; letter-spacing: 0.1em; margin-bottom: 1rem;">{area.num}</p>
+          <h3 style="font-family: var(--font-mono); font-size: 0.9rem; font-weight: 700; color: var(--foreground); margin-bottom: 0.75rem; letter-spacing: -0.01em;">{area.title}</h3>
+          <p style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--muted-foreground); line-height: 1.7;">{area.desc}</p>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- ── FERRAMENTAS ────────────────────────────────────── -->
+  <section style="max-width: 1200px; margin: 0 auto; padding: 0 2rem 6rem; border-top: 1px solid var(--border);">
+    <div data-reveal="scroll" style="display: flex; align-items: baseline; gap: 1rem; padding: 3rem 0 2rem;">
+      <span style="font-family: var(--font-mono); font-size: 0.65rem; color: var(--accent); font-weight: 700; letter-spacing: 0.1em;">05</span>
+      <h2 style="font-family: var(--font-mono); font-size: 0.65rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted-foreground);">FERRAMENTAS</h2>
+    </div>
+    <p data-reveal="scroll" style="font-family: var(--font-mono); font-size: 0.75rem; letter-spacing: 0.1em; color: var(--muted-foreground);">
+      {tools.join(' · ')}
+    </p>
+  </section>
+
+</BaseLayout>

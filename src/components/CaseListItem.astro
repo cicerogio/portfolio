@@ -1,0 +1,80 @@
+---
+import { BASE } from '@/consts';
+
+interface Props {
+  number: string;
+  tag: string;
+  title: string;
+  subtitle: string;
+  cover: string;
+  metric: string;
+  slug: string;
+  index: number;
+}
+
+const { number, tag, title, subtitle, cover, metric, slug, index } = Astro.props;
+const href = `${BASE}/cases/${slug}`;
+---
+
+<article
+  data-reveal="scroll"
+  style={`transition-delay: ${index * 80}ms; border-top: 1px solid var(--border); padding: 3rem 0;`}
+>
+  <!-- Top row: number + tag -->
+  <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem;">
+    <span style="font-family: var(--font-mono); font-size: 0.65rem; color: var(--accent); font-weight: 700; letter-spacing: 0.1em;">
+      {number}
+    </span>
+    <span style="font-family: var(--font-mono); font-size: 0.65rem; color: var(--muted-foreground); letter-spacing: 0.1em; text-transform: uppercase;">
+      {tag}
+    </span>
+  </div>
+
+  <!-- Title -->
+  <h3 style="font-family: var(--font-mono); font-size: clamp(1.75rem, 4vw, 2.5rem); font-weight: 700; line-height: 1.1; letter-spacing: -0.02em; color: var(--foreground); margin-bottom: 0.75rem;">
+    {title}
+  </h3>
+
+  <!-- Subtitle -->
+  <p style="font-family: var(--font-mono); font-size: 0.85rem; color: var(--muted-foreground); margin-bottom: 2rem; line-height: 1.6;">
+    {subtitle}
+  </p>
+
+  <!-- Case image -->
+  <a href={href} style="display: block; margin-bottom: 1.5rem; overflow: hidden; position: relative;" aria-label={`Open case: ${title}`}>
+    <div
+      class="img-placeholder case-img-hover"
+      style="width: 100%; aspect-ratio: 16/9;"
+    >
+      <img
+        src={cover}
+        alt={`${title} screenshot`}
+        style="width: 100%; height: 100%; object-fit: cover; position: absolute; inset: 0; transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), filter 0.3s ease;"
+        onerror="this.style.display='none';"
+        loading="lazy"
+      />
+      <span>{title} — screenshot placeholder</span>
+    </div>
+  </a>
+
+  <!-- Bottom row: metric + link -->
+  <div style="display: flex; align-items: baseline; justify-content: space-between; flex-wrap: wrap; gap: 1rem;">
+    <p style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--muted-foreground); letter-spacing: 0.04em;">
+      <span style="color: var(--accent); font-weight: 700;">↗</span> {metric}
+    </p>
+    <a
+      href={href}
+      class="underline-hover"
+      style="font-family: var(--font-mono); font-size: 0.75rem; font-weight: 700; letter-spacing: 0.08em; color: var(--foreground); text-decoration: none; text-transform: uppercase;"
+    >
+      Ver case →
+    </a>
+  </div>
+</article>
+
+<style>
+  .case-img-hover img:hover {
+    transform: scale(1.02);
+    filter: brightness(0.95);
+  }
+</style>

@@ -38,8 +38,7 @@ html {
 
 /* Hide native cursor only on devices that support hover (desktop) */
 @media (hover: hover) and (pointer: fine) {
-  html { cursor: none; }
-  a, button { cursor: none; }
+  *, *::before, *::after { cursor: none !important; }
 }
 
 body {

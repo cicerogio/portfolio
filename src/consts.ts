@@ -16,7 +16,7 @@ export const AUTHOR = {
 export const SOCIAL = {
   email: 'mailto:cicerogiovany@gmail.com',
   linkedin: 'https://linkedin.com/in/giovany-jr-617223aa',
-  github: 'https://github.com/cicerogio',
+  github: 'https://github.com/giovanyux',
 };
 
 export const CREDENTIALS = [
@@ -38,6 +38,6 @@ export const SITE = {
   title: 'Giovany Jr — Lead Product Designer',
   description:
     'Lead product designer com 9 anos de experiência. Portfólio de trabalhos selecionados em product design, design systems e IA.',
-  url: 'https://cicerogio.github.io/portfolio',
+  url: 'https://giovanyux.github.io/portfolio',
   ogImage: `${BASE}/og-image.jpg`,
 };

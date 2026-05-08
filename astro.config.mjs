@@ -27,7 +27,7 @@ const syncPublicToDist = {
 };
 
 export default defineConfig({
-  site: 'https://giovanyjr.github.io',
+  site: 'https://giovanyux.github.io',
   base: '/portfolio',
   output: 'static',
   integrations: [mdx(), sitemap()],

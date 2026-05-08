@@ -18,7 +18,7 @@ interface Props {
 const { title, description, cover, coverVideo, tags, metric, client, role, duration, year } = Astro.props;
 ---
 
-<BaseLayout title={`${title} — Giovany Jr`} description={description} ogImage={cover}>
+<BaseLayout title={`${title} — Giovany Jr`} description={description} ogImage={`${BASE}${cover}`} type="article">
   <div style="max-width: 900px; margin: 0 auto; padding: 0 2rem;">
 
     <!-- Breadcrumb -->

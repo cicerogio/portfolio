@@ -39,5 +39,5 @@ export const SITE = {
   description:
     'Lead product designer com 9 anos de experiência. Portfólio de trabalhos selecionados em product design, design systems e IA.',
   url: 'https://giovanyux.github.io/portfolio',
-  ogImage: `${BASE}/og-image.jpg`,
+  ogImage: `${BASE}/og-image.png`,
 };

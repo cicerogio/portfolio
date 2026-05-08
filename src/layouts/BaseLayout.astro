@@ -23,6 +23,7 @@ const {
 const canonical = new URL(Astro.url.pathname, SITE.url);
 const ogImageAbsolute = new URL(ogImage, Astro.site).href;
 const ogImageMime = ogImage.endsWith('.png') ? 'image/png' : 'image/jpeg';
+const ogLogo = new URL(`${BASE}/favicon.svg`, Astro.site).href;
 ---
 
 <!doctype html>
@@ -45,6 +46,7 @@ const ogImageMime = ogImage.endsWith('.png') ? 'image/png' : 'image/jpeg';
     <meta property="og:image:height" content="630" />
     <meta property="og:image:type" content={ogImageMime} />
     <meta property="og:image:alt" content={title} />
+    <meta property="og:logo" content={ogLogo} />
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />

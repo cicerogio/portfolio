@@ -78,7 +78,7 @@ Era assim que esses sistemas eram usados em produção entre 2018 e 2021. Telas 
   variant="mosaic"
   screens={[
     { src: "/cases/healthcare/sam-fila.png", alt: "SAM, fila de pacientes graves", caption: "Fila de pacientes graves com legenda de criticidade clínica." },
-    { src: "/cases/healthcare/sam-atendimento.png", alt: "SAM, atendimento médico", caption: "Tela de atendimento médico inicial com sinais vitais e anamnese." },
+    { src: "/cases/healthcare/sam-atendimento.png", alt: "SAM, tela de atendimento médico com sinais vitais, anamnese e histórico do paciente", caption: "Tela de atendimento médico inicial com sinais vitais e anamnese." },
     { src: "/cases/healthcare/sam-resumo.png", alt: "SAM, resumo do atendimento", caption: "Resumo com indicador de alteração crítica em vermelho." }
   ]}
 />
@@ -118,7 +118,7 @@ Mas esse não é o problema central. As quatro limitações tratam de hierarquia
   text="A pergunta era: como melhorar essa tela de atendimento médico? A pergunta certa era: como o sistema pode ajudar o médico a atender, em vez de só documentar atendimento?"
 />
 
-A diferença entre essas duas perguntas é a diferença entre reorganizar um formulário e reimaginar um fluxo.
+A diferença entre essas duas perguntas é a diferença entre reorganizar um formulário e reimaginar um fluxo. É onde eu errei.
 
 ### Discovery em três camadas
 
@@ -165,7 +165,7 @@ Cores semânticas pra criticidade clínica, tipografia técnica que separa dados
   screens={[
     { src: "/cases/healthcare/tokens-colors.png", alt: "Paleta de cores do design system clínico", caption: "Cores semânticas: danger pra alteração crítica, warning pra atenção, success pra normal, accent azul cobalto pra ações primárias." },
     { src: "/cases/healthcare/tokens-typography.png", alt: "Escala tipográfica do design system clínico", caption: "Inter pra texto, JetBrains Mono pra dados numéricos. Hierarquia em cinco tamanhos." },
-    { src: "/cases/healthcare/tokens-spacing.png", alt: "Sistema de espaçamento", caption: "Base 4px, escala linear até 48px." }
+    { src: "/cases/healthcare/tokens-spacing.png", alt: "Sistema de espaçamento do design system clínico, base 4px com escala linear até 48px", caption: "Base 4px, escala linear até 48px." }
   ]}
 />
 
@@ -193,7 +193,7 @@ A escolha do formato depende do leitor. Pra dev, Figma e Storybook. Pra chefia c
 
 **Em emergência, fricção é risco, não incômodo.** Em SaaS B2B, UI funciona é critério de pronto. Em fluxo clínico crítico, não é. Hoje eu não trataria "UI funciona" como pronto pra produção em emergência. Tratei na época, e não repetiria.
 
-**Design system clínico é ativo de segurança, não de produtividade.** A repetição entre os nove sistemas que entreguei era enorme. Reduzir variação visual e comportamental entre sistemas que o mesmo médico usa em sequência é decisão clínica disfarçada de DS.
+**Design system clínico é ativo de segurança, não de produtividade.** A repetição entre os nove sistemas que entreguei era enorme. Ainda me pesa. Reduzir variação visual e comportamental entre sistemas que o mesmo médico usa em sequência é decisão clínica disfarçada de DS.
 
 **Discovery em saúde regulada precisa de mediação clínica, mas mediação não pode virar desculpa.** A gente fingia discovery porque a chefia médica decidia em última instância. Mesmo nesse contexto dá pra observar enfermeiro em campo, instrumentar tela em produção, fazer entrevistas estruturadas pós-implantação. Eu não fiz isso na época. Hoje, faço.
 

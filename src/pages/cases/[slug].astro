@@ -3,7 +3,7 @@ import { getCollection } from 'astro:content';
 import CaseLayout from '@/layouts/CaseLayout.astro';
 
 export async function getStaticPaths() {
-  const cases = await getCollection('cases', ({ data }) => !data.draft);
+  const cases = await getCollection('cases', ({ data }) => !data.draft && !data.comingSoon);
   return cases.map((entry) => ({
     params: { slug: entry.slug },
     props: { entry },
@@ -18,6 +18,7 @@ const { Content } = await entry.render();
   title={entry.data.title}
   description={entry.data.description}
   cover={entry.data.cover}
+  coverVideo={entry.data.coverVideo}
   tags={entry.data.tags}
   metric={entry.data.metric}
   client={entry.data.client}

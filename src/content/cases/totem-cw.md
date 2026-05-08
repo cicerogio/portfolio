@@ -2,6 +2,7 @@
 title: "Cardápio Web Totem"
 description: "Totem de autoatendimento para restaurantes brasileiros — do zero à produção em 3 meses."
 date: 2024-04-15
+draft: true
 tags: ["Produto", "Food-tech"]
 cover: "/portfolio/images/totem-cover.png"
 metric: "+R$ 44k GMV nos primeiros 4 meses"

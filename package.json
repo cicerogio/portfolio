@@ -3,19 +3,22 @@
   "type": "module",
   "version": "0.1.0",
   "scripts": {
+    "predev": "mkdir -p dist",
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview"
   },
   "dependencies": {
-    "astro": "^5.18.1",
+    "@fontsource/inter": "^5.2.8",
     "@fontsource/jetbrains-mono": "^5.2.8",
-    "@fontsource/inter": "^5.2.8"
+    "astro": "^5.18.1"
   },
   "devDependencies": {
+    "@astrojs/check": "^0.9.9",
     "@astrojs/mdx": "^4.3.14",
     "@astrojs/sitemap": "^3.7.2",
     "@tailwindcss/vite": "^4.2.4",
-    "tailwindcss": "^4.2.4"
+    "tailwindcss": "^4.2.4",
+    "typescript": "^5.9.3"
   }
 }

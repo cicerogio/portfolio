@@ -8,12 +8,15 @@ const cases = defineCollection({
     date: z.coerce.date(),
     tags: z.array(z.string()),
     cover: z.string(),
+    thumbnail: z.string().optional(),
+    coverVideo: z.string().optional(),
     metric: z.string(),
     client: z.string(),
     role: z.string(),
     duration: z.string(),
     year: z.number(),
     draft: z.boolean().optional().default(false),
+    comingSoon: z.boolean().optional().default(false),
   }),
 });
 

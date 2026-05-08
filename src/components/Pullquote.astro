@@ -1,0 +1,39 @@
+---
+interface Props {
+  text: string;
+  attribution?: string;
+}
+const { text, attribution } = Astro.props;
+---
+
+<blockquote class="pullquote">
+  <p class="pullquote-text">{text}</p>
+  {attribution && <footer class="pullquote-attribution">{attribution}</footer>}
+</blockquote>
+
+<style>
+  .pullquote {
+    border-left: 2px solid var(--accent);
+    padding: 3rem 0 3rem 2rem;
+    margin: 3.5rem 0;
+  }
+
+  .pullquote-text {
+    font-family: var(--font-sans);
+    font-size: clamp(1.125rem, 2.5vw, 1.625rem);
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    line-height: 1.5;
+    color: var(--foreground);
+    margin: 0;
+  }
+
+  .pullquote-attribution {
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted-foreground);
+    margin-top: 1rem;
+  }
+</style>

@@ -1,5 +1,5 @@
 ---
-title: "Gupy ATS Redesign"
+title: "Redesign do ATS da Gupy"
 description: "Redesign completo do sistema de rastreamento de candidatos da maior plataforma de RH do Brasil."
 date: 2021-08-01
 tags: ["Produto", "B2B SaaS"]
@@ -9,6 +9,7 @@ client: "Gupy"
 role: "Senior Product Designer"
 duration: "6 meses"
 year: 2021
+comingSoon: true
 ---
 
 ## Contexto

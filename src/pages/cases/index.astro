@@ -31,9 +31,12 @@ const cases = allCases.sort((a, b) => b.data.date.getTime() - a.data.date.getTim
         title={c.data.title}
         subtitle={c.data.description}
         cover={c.data.cover}
+        thumbnail={c.data.thumbnail}
+        coverVideo={c.data.coverVideo}
         metric={c.data.metric}
         slug={c.slug}
         index={i}
+        comingSoon={c.data.comingSoon}
       />
     ))}
     <div style="border-top: 1px solid var(--border);"></div>

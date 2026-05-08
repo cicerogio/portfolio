@@ -1,0 +1,207 @@
+---
+import { BASE } from '@/consts';
+
+interface Screen {
+  src: string;
+  alt: string;
+  caption?: string;
+}
+
+interface Props {
+  variant: 'stack' | 'backdrop' | 'mosaic';
+  src?: string;
+  alt?: string;
+  videoSrc?: string;
+  screens?: Screen[];
+  label?: string;
+  caption?: string;
+  accent?: boolean;
+  imageAspectRatio?: string;
+}
+
+const { variant, src, alt, videoSrc, screens = [], label, caption, accent = false, imageAspectRatio } = Astro.props;
+const imgSrc = src ? BASE + src : undefined;
+const resolvedVideoSrc = videoSrc ? BASE + videoSrc : undefined;
+const imgScreens = screens.map(s => ({ ...s, src: BASE + s.src }));
+
+const backdropBg = accent
+  ? 'color-mix(in srgb, var(--accent) 10%, transparent)'
+  : 'var(--muted)';
+---
+
+<figure class="sysdisplay" data-variant={variant}>
+  {label && <p class="sysdisplay-label">{label}</p>}
+
+  {variant === 'backdrop' && (
+    <div class="sysdisplay-backdrop" style={`background: ${backdropBg};`}>
+      {resolvedVideoSrc ? (
+        <video
+          autoplay
+          loop
+          muted
+          playsinline
+          preload="metadata"
+          poster={imgSrc}
+          class="sysdisplay-img"
+        >
+          <source src={resolvedVideoSrc} type="video/mp4" />
+          <img src={imgSrc} alt={alt ?? ''} class="sysdisplay-img" />
+        </video>
+      ) : (
+        <img src={imgSrc} alt={alt ?? ''} class="sysdisplay-img" />
+      )}
+    </div>
+  )}
+
+  {variant === 'stack' && (
+    <div class="sysdisplay-stack-wrap">
+      {imgScreens.map((s, i) => (
+        <div
+          class="sysdisplay-stack-item"
+          style={`
+            --offset: ${i * 28}px;
+            opacity: ${1 - i * 0.25};
+            transform: translate(var(--offset), var(--offset)) scale(${1 - i * 0.03});
+            z-index: ${screens.length - i};
+          `}
+        >
+          <img src={s.src} alt={s.alt} class="sysdisplay-img" />
+        </div>
+      ))}
+    </div>
+  )}
+
+  {variant === 'mosaic' && (
+    <div class={`sysdisplay-mosaic sysdisplay-mosaic--${imgScreens.length}`}>
+      {imgScreens.map((s) => (
+        <div class="sysdisplay-mosaic-cell">
+          <img
+            src={s.src}
+            alt={s.alt}
+            class="sysdisplay-img"
+            style={imageAspectRatio ? `aspect-ratio: ${imageAspectRatio}; object-fit: cover; object-position: top center;` : undefined}
+          />
+          {s.caption && <p class="sysdisplay-cell-caption">{s.caption}</p>}
+        </div>
+      ))}
+    </div>
+  )}
+
+  {caption && <figcaption class="sysdisplay-caption">{caption}</figcaption>}
+</figure>
+
+<style>
+  .sysdisplay {
+    margin: 2.5rem 0;
+  }
+
+  .sysdisplay-label {
+    font-family: var(--font-mono);
+    font-size: 0.6rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--muted-foreground);
+    margin-bottom: 0.75rem;
+  }
+
+  .sysdisplay-caption {
+    font-family: var(--font-mono);
+    font-size: 0.6rem;
+    color: var(--muted-foreground);
+    letter-spacing: 0.06em;
+    margin-top: 0.75rem;
+    line-height: 1.6;
+  }
+
+  /* ── img base ── */
+  .sysdisplay-img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+  }
+
+  /* ── backdrop ── */
+  .sysdisplay-backdrop {
+    padding: 3rem 3.5rem;
+    border-radius: 4px;
+  }
+
+  /* ── stack ── */
+  .sysdisplay-stack-wrap {
+    position: relative;
+    background: var(--muted);
+    padding: 4rem 5rem 6rem 4rem;
+    border-radius: 4px;
+    /* height enough to show all layers */
+    min-height: 320px;
+  }
+
+  .sysdisplay-stack-item {
+    position: absolute;
+    inset: 4rem 5rem auto 4rem;
+    transition: none;
+  }
+
+  .sysdisplay-stack-item:first-child {
+    position: relative;
+    inset: unset;
+  }
+
+  /* ── mosaic ── */
+  .sysdisplay-mosaic {
+    display: grid;
+    gap: 1.5rem;
+    background: var(--muted);
+    padding: 1.5rem;
+    border-radius: 4px;
+  }
+
+  /* 4 imagens: 2x2 */
+  .sysdisplay-mosaic--4 {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  /* 3 imagens: 3 colunas iguais */
+  .sysdisplay-mosaic--3 {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+
+  .sysdisplay-mosaic-cell {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    align-self: start;
+  }
+
+  .sysdisplay-mosaic-cell .sysdisplay-img {
+    height: auto;
+  }
+
+  .sysdisplay-cell-caption {
+    font-family: var(--font-mono);
+    font-size: 0.55rem;
+    color: var(--muted-foreground);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    line-height: 1.5;
+  }
+
+  /* video herda sysdisplay-img — garante proporção correta */
+  .sysdisplay-backdrop video.sysdisplay-img {
+    height: auto;
+  }
+
+  /* mobile */
+  @media (max-width: 640px) {
+    .sysdisplay-mosaic {
+      grid-template-columns: 1fr !important;
+    }
+
+    .sysdisplay-backdrop {
+      padding: 1.5rem;
+    }
+  }
+</style>

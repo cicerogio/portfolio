@@ -6,6 +6,7 @@ interface Props {
   title: string;
   description: string;
   cover: string;
+  coverVideo?: string;
   tags: string[];
   metric: string;
   client: string;
@@ -14,7 +15,7 @@ interface Props {
   year: number;
 }
 
-const { title, description, cover, tags, metric, client, role, duration, year } = Astro.props;
+const { title, description, cover, coverVideo, tags, metric, client, role, duration, year } = Astro.props;
 ---
 
 <BaseLayout title={`${title} — Giovany Jr`} description={description} ogImage={cover}>
@@ -78,18 +79,34 @@ const { title, description, cover, tags, metric, client, role, duration, year } 
       ))}
     </div>
 
-    <!-- Hero image -->
+    <!-- Hero image / video -->
     <div
       data-reveal="scroll"
       class="img-placeholder"
       style="width: 100%; aspect-ratio: 16/9; margin-bottom: 0.5rem;"
     >
-      <img
-        src={cover}
-        alt={`${title} — hero image`}
-        style="width: 100%; height: 100%; object-fit: cover; position: absolute; inset: 0;"
-        onerror="this.style.display='none';"
-      />
+      {coverVideo ? (
+        <video
+          autoplay
+          loop
+          muted
+          playsinline
+          preload="metadata"
+          poster={BASE + cover}
+          aria-label={`Demo animada do redesign: ${title}`}
+          class="cover-media"
+        >
+          <source src={BASE + coverVideo} type="video/mp4" />
+          <img src={BASE + cover} alt={`${title} — hero image`} class="cover-media" />
+        </video>
+      ) : (
+        <img
+          src={BASE + cover}
+          alt={`${title} — hero image`}
+          class="cover-media"
+          onerror="this.style.display='none';"
+        />
+      )}
       <span>{title} — hero screenshot</span>
     </div>
     <p data-reveal="scroll" style="font-family: var(--font-mono); font-size: 0.6rem; color: var(--muted-foreground); letter-spacing: 0.06em; margin-bottom: 3rem; text-align: center;">
@@ -127,3 +144,23 @@ const { title, description, cover, tags, metric, client, role, duration, year } 
     </div>
   </div>
 </BaseLayout>
+
+<style>
+  .cover-media {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+  }
+</style>
+
+<script>
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    document.querySelectorAll('video[autoplay]').forEach((v) => {
+      (v as HTMLVideoElement).removeAttribute('autoplay');
+      (v as HTMLVideoElement).pause();
+    });
+  }
+</script>

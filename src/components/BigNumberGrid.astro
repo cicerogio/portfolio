@@ -1,0 +1,49 @@
+---
+---
+<div class="bng-grid">
+  <slot />
+</div>
+
+<style>
+  .bng-grid {
+    /* CSS vars herdadas pelos BigNumber filhos */
+    --bng-num-size: clamp(1rem, 1.8vw, 1.5rem);
+    --bng-label-size: 0.55rem;
+    --bng-context-size: 0.75rem;
+    --bng-padding: 1.25rem 1rem;
+
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 0;
+    margin: 2.5rem 0;
+
+    /* Break out da prose max-width (68ch) pra usar a largura do container */
+    width: min(860px, calc(100vw - 4rem));
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  /* Borda vertical entre colunas */
+  .bng-grid > :global(.bignum + .bignum) {
+    border-left: 1px solid var(--border);
+    padding-left: 1rem;
+  }
+
+  @media (max-width: 1023px) {
+    .bng-grid {
+      grid-template-columns: repeat(3, 1fr);
+      --bng-num-size: clamp(1.1rem, 2.5vw, 1.5rem);
+    }
+  }
+
+  @media (max-width: 639px) {
+    .bng-grid {
+      grid-template-columns: repeat(2, 1fr);
+      --bng-num-size: clamp(1.1rem, 4vw, 1.4rem);
+      width: calc(100% + 0px); /* sem break-out em mobile */
+      left: 0;
+      transform: none;
+    }
+  }
+</style>

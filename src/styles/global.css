@@ -136,6 +136,7 @@ img { display: block; max-width: 100%; }
   font-family: var(--font-sans);
   color: var(--foreground);
   max-width: 68ch;
+  margin: 0 auto;
 }
 
 .prose h2 {
@@ -196,6 +197,12 @@ img { display: block; max-width: 100%; }
   font-size: 1.125rem;
   color: var(--foreground);
   font-style: normal;
+}
+
+.prose hr {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 3.5rem 0;
 }
 
 .prose img {

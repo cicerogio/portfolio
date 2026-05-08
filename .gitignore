@@ -1,0 +1,19 @@
+# Dependencies
+node_modules/
+
+# Build output
+dist/
+
+# Astro generated
+.astro/
+
+# OS
+.DS_Store
+
+# Environment
+.env
+.env.*
+!.env.example
+
+# Editor
+.vscode/settings.json

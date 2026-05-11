@@ -121,17 +121,19 @@ const cases = allCases.sort((a, b) => b.data.date.getTime() - a.data.date.getTim
   </section>
 
   <!-- ── CREDENTIALS STRIP ─────────────────────────────── -->
-  <div style="border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); overflow: hidden; padding: 0.875rem 0;">
-    <div style="display: flex; align-items: center; gap: 2rem; white-space: nowrap;">
-      <span style="font-family: var(--font-mono); font-size: 0.6rem; letter-spacing: 0.12em; color: var(--muted-foreground); text-transform: uppercase; padding: 0 2rem; flex-shrink: 0;">
+  <div style="border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 0.875rem 0;">
+    <div style="display: flex; align-items: center;">
+      <span style="font-family: var(--font-mono); font-size: 0.6rem; letter-spacing: 0.12em; color: var(--muted-foreground); text-transform: uppercase; padding: 0 2rem; flex-shrink: 0; white-space: nowrap;">
         Anteriormente em
       </span>
-      <div class="marquee-track" style="gap: 3rem; display: flex; align-items: center;">
-        {[...CREDENTIALS, ...CREDENTIALS].map((name) => (
-          <span style="font-family: var(--font-mono); font-size: 0.7rem; font-weight: 700; letter-spacing: 0.14em; color: var(--muted-foreground); text-transform: uppercase; flex-shrink: 0;">
-            {name}
-          </span>
-        ))}
+      <div style="overflow: hidden; flex: 1; min-width: 0;">
+        <div class="marquee-track" style="gap: 3rem; display: flex; align-items: center;">
+          {[...CREDENTIALS, ...CREDENTIALS].map((name) => (
+            <span style="font-family: var(--font-mono); font-size: 0.7rem; font-weight: 700; letter-spacing: 0.14em; color: var(--muted-foreground); text-transform: uppercase; flex-shrink: 0;">
+              {name}
+            </span>
+          ))}
+        </div>
       </div>
     </div>
   </div>
